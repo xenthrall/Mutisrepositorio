@@ -1,0 +1,150 @@
+@startuml Financial Module DB Design
+
+!define table(x) class x << (T,#FFAAAA) >>
+!define entity(x) class x << (E,#AAFFAA) >>
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+skinparam classAttributeIconSize 0
+
+' ========== ENTIDADES DEL MÓDULO FINANCIAL ==========
+
+table(Expense) {
+    + id: BIGINT [PK]
+    + expense_category_id: BIGINT [FK]
+    + journal_id: BIGINT [FK]
+    + partner_id: BIGINT [FK]
+    + amount: DECIMAL(10,2)
+    + expense_date: DATE
+    + description: TEXT
+    + created_at: TIMESTAMP
+    + updated_at: TIMESTAMP
+    + deleted_at: TIMESTAMP
+}
+
+table(ExpenseCategory) {
+    + id: BIGINT [PK]
+    + name: VARCHAR
+    + description: TEXT
+    + is_active: BOOLEAN
+    + created_at: TIMESTAMP
+    + updated_at: TIMESTAMP
+    + deleted_at: TIMESTAMP
+}
+
+table(Invoice) {
+    + id: BIGINT [PK]
+    + partner_id: BIGINT [FK]
+    + memo: VARCHAR
+    + invoice_date: DATE
+    + total_amount: DECIMAL(10,2)
+    + status: InvoiceStatusEnum
+    + notes: TEXT
+    + created_at: TIMESTAMP
+    + updated_at: TIMESTAMP
+    + deleted_at: TIMESTAMP
+}
+
+table(InvoiceLine) {
+    + id: BIGINT [PK]
+    + invoice_id: BIGINT [FK]
+    + product_id: BIGINT [FK]
+    + quantity: DECIMAL(10,2)
+    + unit_price: DECIMAL(10,2)
+    + subtotal: DECIMAL(10,2)
+    + created_at: TIMESTAMP
+    + updated_at: TIMESTAMP
+}
+
+table(Journal) {
+    + id: BIGINT [PK]
+    + name: VARCHAR
+    + type: JournalTypeEnum
+    + titular: VARCHAR
+    + currency: VARCHAR
+    + balance: DECIMAL(10,2)
+    + is_active: BOOLEAN
+    + created_at: TIMESTAMP
+    + updated_at: TIMESTAMP
+    + deleted_at: TIMESTAMP
+}
+
+table(Payment) {
+    + id: BIGINT [PK]
+    + invoice_id: BIGINT [FK]
+    + journal_id: BIGINT [FK]
+    + amount: DECIMAL(10,2)
+    + payment_date: DATE
+    + memo: VARCHAR
+    + created_at: TIMESTAMP
+    + updated_at: TIMESTAMP
+    + deleted_at: TIMESTAMP
+}
+
+table(Product) {
+    + id: BIGINT [PK]
+    + code: VARCHAR
+    + name: VARCHAR
+    + type: ProductTypeEnum
+    + price: DECIMAL(10,2)
+    + is_active: BOOLEAN
+    + created_at: TIMESTAMP
+    + updated_at: TIMESTAMP
+    + deleted_at: TIMESTAMP
+}
+
+' ========== ENTIDAD EXTERNA (Core Module) ==========
+
+entity(Partner) {
+    + id: BIGINT [PK]
+    ...
+}
+
+' ========== ENUMS ==========
+
+class InvoiceStatusEnum << (E,#FFFFAA) >> {
+    DRAFT
+    SENT
+    PAID
+    OVERDUE
+    CANCELLED
+}
+
+class JournalTypeEnum << (E,#FFFFAA) >> {
+    CASH
+    BANK
+    CREDIT_CARD
+    WALLET
+}
+
+class ProductTypeEnum << (E,#FFFFAA) >> {
+    SERVICE
+    GOODS
+    SUBSCRIPTION
+}
+
+' ========== RELACIONES ==========
+
+ExpenseCategory "1" -- "0..*" Expense : hasMany >
+Expense "*" --> "1" Journal : belongsTo >
+Expense "*" --> "1" Partner : belongsTo >
+
+Invoice "1" -- "0..*" InvoiceLine : hasMany >
+Invoice "1" -- "0..*" Payment : hasMany >
+Invoice "*" --> "1" Partner : belongsTo >
+
+InvoiceLine "*" --> "1" Invoice : belongsTo >
+InvoiceLine "*" --> "1" Product : belongsTo >
+
+Payment "*" --> "1" Invoice : belongsTo >
+Payment "*" --> "1" Journal : belongsTo >
+
+Invoice ..> InvoiceStatusEnum : uses
+Journal ..> JournalTypeEnum : uses
+Product ..> ProductTypeEnum : uses
+
+@enduml
