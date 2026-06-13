@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             
-            $table->foreignId('partner_id')->constrained('partners')->restrictOnDelete();
+            $table->foreignId('partner_id')->nullable()->constrained('partners')->restrictOnDelete();
             
             // ESTILO ODOO: Secuencia oficial de la factura (Ej: S-0001)
             $table->string('number')->unique()->nullable();
