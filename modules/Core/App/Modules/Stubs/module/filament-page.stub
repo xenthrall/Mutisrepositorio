@@ -1,0 +1,24 @@
+<?php
+
+namespace Modules\{{module}}\App\Filament\Pages;
+
+use Filament\Pages\Page;
+use BackedEnum;
+use Filament\Support\Icons\Heroicon;
+
+class {{module}}Dashboard extends Page
+{
+    // Un icono curioso (pieza de rompecabezas) ideal para nuevos módulos
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::PuzzlePiece;
+
+    // Agrupa la página bajo el nombre del módulo
+    protected static string|\UnitEnum|null $navigationGroup = '{{module}}';
+
+    // Usamos el alias del módulo (en minúsculas) para la vista
+    protected string $view = '{{module_lower}}::filament.pages.dashboard';
+
+    public function getTitle(): string
+    {
+        return 'Bienvenido a {{module}}';
+    }
+}

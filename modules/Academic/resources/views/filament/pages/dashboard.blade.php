@@ -1,0 +1,75 @@
+<x-filament-panels::page>
+    <x-filament::section>
+        <div class="flex items-center gap-x-4">
+            <div class="p-4 rounded-full bg-primary-500/10 dark:bg-primary-500/20 ring-1 ring-primary-500/20">
+                <x-filament::icon 
+                    icon="heroicon-o-sparkles" 
+                    class="w-10 h-10 text-primary-500 animate-pulse" 
+                />
+            </div>
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight text-gray-950 dark:text-white">
+                    ¡Boom! Módulo Academic creado. 🚀
+                </h1>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">
+                    Sobreviviste a la generación automática. Bienvenido al futuro modular de nuestro ERP.
+                </p>
+            </div>
+        </div>
+    </x-filament::section>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        
+        <x-filament::section>
+            <x-slot name="heading">
+                <div class="flex items-center gap-2">
+                    <x-filament::icon icon="heroicon-o-fire" class="w-5 h-5 text-warning-500" />
+                    <span>Nivel Dios Desbloqueado 😏</span>
+                </div>
+            </x-slot>
+            
+            <div class="space-y-4 text-sm text-gray-600 dark:text-gray-300">
+                <p>
+                    Si estás viendo esto, significa que el sistema de auto-descubrimiento hizo su magia. No más <code>require</code> manuales, no más peleas con las mayúsculas en Ubuntu. Todo está inyectado y cacheado.
+                </p>
+                <p>
+                    Tu arquitectura modular está viva. Respira hondo, tómate un buen café ☕ y prepárate para escribir código legendario en la carpeta <code>modules/Academic</code>.
+                </p>
+                
+                <div class="p-3 bg-danger-500/10 rounded-lg border border-danger-500/20">
+                    <p class="text-danger-600 dark:text-danger-400 font-semibold text-xs text-center">
+                        ⚠️ Recordatorio: Por favor, no despliegues a producción un viernes a las 5:00 PM.
+                    </p>
+                </div>
+            </div>
+        </x-filament::section>
+
+        <x-filament::section>
+            <x-slot name="heading">
+                <div class="flex items-center gap-2">
+                    <x-filament::icon icon="heroicon-o-clipboard-document-check" class="w-5 h-5 text-success-500" />
+                    <span>¿Y ahora qué? (Checklist)</span>
+                </div>
+            </x-slot>
+
+            <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                <li class="flex items-center gap-3">
+                    <x-filament::icon icon="heroicon-m-check-circle" class="w-5 h-5 text-primary-500" />
+                    <span>1. Crear tus Modelos y Migraciones.</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <x-filament::icon icon="heroicon-m-check-circle" class="w-5 h-5 text-primary-500" />
+                    <span>2. Construir tus Resources de Filament.</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <x-filament::icon icon="heroicon-m-check-circle" class="w-5 h-5 text-primary-500" />
+                    <span>3. Escribir pruebas unitarias <span class="text-xs text-gray-400 italic">(Opcional, pero Dios te está viendo).</span></span>
+                </li>
+                <li class="flex items-center gap-3 opacity-60">
+                    <x-filament::icon icon="heroicon-m-arrow-path-rounded-square" class="w-5 h-5 text-gray-400 animate-spin" />
+                    <span>4. Conquistar el mundo con este ERP.</span>
+                </li>
+            </ul>
+        </x-filament::section>
+    </div>
+</x-filament-panels::page>

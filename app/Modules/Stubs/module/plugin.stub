@@ -1,0 +1,15 @@
+<?php
+
+namespace Modules\{{module}}\Providers;
+
+use Modules\Core\Foundation\Filament\BaseModulePlugin;
+
+class {{module}}Plugin extends BaseModulePlugin
+{
+    protected string $module = '{{module}}';
+
+    public function getId(): string
+    {
+        return '{{module_kebab}}-module';
+    }
+}

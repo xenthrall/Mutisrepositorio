@@ -1,0 +1,11 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+@source '../../../../resources/views/livewire/**/*';
+
+
+
+/* ignorar el módulo Customers ejemplo */
+@source '../../../../modules/!(Customers)/App/Filament/**/*';
+@source '../../../../modules/!(Customers)/resources/views/**/*';

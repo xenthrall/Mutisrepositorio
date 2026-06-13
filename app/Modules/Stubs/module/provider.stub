@@ -1,0 +1,27 @@
+<?php
+
+namespace Modules\{{module}}\Providers;
+
+use Modules\Core\Foundation\ModuleServiceProvider;
+
+class {{module}}ServiceProvider extends ModuleServiceProvider
+{
+    // El ModuleServiceProvider padre necesita saber el nombre
+    protected string $moduleName = '{{module}}';
+
+    public function register(): void
+    {
+        parent::register(); 
+        
+        // Aquí puedes registrar bindings específicos del módulo si los necesitas
+    }
+    
+    public function boot(): void
+    {
+        parent::boot();
+
+        // Las rutas, migraciones y vistas ya fueron cargadas por parent::boot()
+        // Aquí solo debes registrar la lógica de dominio (ej: Observers, Policies)
+        // Ejemplo: Task::observe(TaskObserver::class);
+    }
+}
